@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+    <body> 
+      
+    <element name="form-contacts" extends="div">
+       <template>
+       <div>
+        <table border="0">
+             <form name="Fcontact" method="post">
+                <tr><td align="right"><label for="numero">Numéro</label></td><td><input name="num" size=10 maxlength=80 value=""></td></tr>
+                <tr><td align="right"><label for="prenom">Prénom</label></td><td><input name="prenom" size=40 maxlength=80 value=""></td></tr>
+                <tr><td align="right"><label for="nom">Nom</label></td><td><input name="nom" size=40 maxlength=80 value=""></td></tr>
+                <tr><td align="right"><label for="email">Email</label></td><td><input name="email" size=40 maxlength=80 value=""></td></tr>
+                <tr><td align="right"><label for="tel">Téléphone</label></td><td><input name="tel" size=40 maxlength=80 value=""></td></tr>
+                <tr><td align="right" valign="top"><label for="adresse">Adresse</label></td><td><textarea name="adresse" cols=60 rows=5></textarea></td></tr>              
+                <tr><td align="right" colspan="2"><button id="ajouter">Ajouter</button> <button type="reset">Annuler</button></td></tr>
+             </form>
+           </table>
+        </div>
+        </template>
+         
+      <script type="application/dart" src="gestcon.dart"></script>
+      <!-- for this next line to work, your pubspec.yaml file must have a dependency on 'browser' -->
+      <!--<script src="packages/browser/dart.js"></script>-->
+    </element>  
+  </body>
+</html>
