@@ -1,0 +1,15 @@
+ex06
+
+8/10
+
+README.md: noms ?
+
+(-1) .gitignore ?
+
+modèle ne doit pas savoir sur UI:
+(-1) query("#num").value="";
+
+NoCont
+->
+noCont
+
