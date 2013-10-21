@@ -64,12 +64,7 @@ class ProjectModel extends ConceptModel {
     var affcontact;
     for (var listcon in listContacts) {
       
-            
-      /*btsup.add(new ButtonElement());
-      btsup[compte].id="${listcon.NoCont}";
-      btsup[compte].text="Sup";
-      btsup[compte].onClick.listen(remove(listcon.NoCont));*/
-            
+                        
       affcontact = '''
                        <tr>
                         <td>${listcon.NoCont}</td>
@@ -78,23 +73,31 @@ class ProjectModel extends ConceptModel {
                         <td>${listcon.email}</td>
                         <td>${listcon.tel}</td>
                         <td>${listcon.adresse}</td>
-                        <td align="center"><button id="btmodif" type="button" on-click=update(${listcon.NoCont})><img src="../img/edit.gif" /></button></td>
-                        <td align="center"><button id="btsup" type="button" on-click=remove(${listcon.NoCont})><img src="../img/delete.gif" /></button></td>
+                        <td align="center"><button type="button"><img id="btmod${listcon.NoCont}" src="../img/edit.gif" title="${listcon.NoCont}" /></button></td>
+                        <td align="center"><button type="button"><img id="btsup${listcon.NoCont}" src="../img/delete.gif" title="${listcon.NoCont}" /></button></td>
                        </tr>''';
       
     list = '$list ${affcontact}';
-    
+         
     //compte=compte+1;
   }
     affcontact='''</table>''';
     list = '$list ${affcontact}';
-    
+         
   // the HTML library defines a global "document" variable
   document.query('#affcontacts').innerHtml = list;
-  
+  //query('#33').onClick.listen(remove);
+  for(var i in listContacts){
+    var idele="#btsup"+i.NoCont;
+    var idc="#btmod"+i.NoCont;
+    //print('${idele}');
+    query(idele).onClick.listen(remove);
+    query(idc).onClick.listen(update);    
+  }
   
 }
  
+  
   evenBtAjout(){
     AddMaj=0;
     query('#ajouter').onClick.listen(add);
@@ -156,7 +159,14 @@ class ProjectModel extends ConceptModel {
         
         display();
         
-        message.text = 'Ajouter effectué; ${message.text}';         
+        message.text = 'Ajouter effectué; ${message.text}';  
+        
+        query("#num").value="";
+        query("#prenom").value="";
+        query("#nom").value="";
+        query("#email").value="";
+        query("#tel").value="";
+        query("#adresse").value="";
         
       }
     }else{
@@ -173,8 +183,8 @@ class ProjectModel extends ConceptModel {
       var error = false;
       message.text = '';
       
-      var majContact = new Contact();
-      majContact.NoCont=num.value;
+      var majContact = listContacts.find(num.value);
+      //majContact.NoCont=num.value;      
       majContact.prenom=prenom.value;
       majContact.nom=nom.value;
       majContact.email=email.value;
@@ -183,61 +193,58 @@ class ProjectModel extends ConceptModel {
       
       listContacts.add(majContact);
       display();      
-      message.text = 'Ajouter effectué; ${message.text}'; 
+      message.text = 'Mise a jour effectuée; ${message.text}'; 
+      
+      AddMaj=0;
+      
+      query("#num").value="";
+      query("#prenom").value="";
+      query("#nom").value="";
+      query("#email").value="";
+      query("#tel").value="";
+      query("#adresse").value="";
+      
     }
   }
   
-  evenBtModif(){
-    AddMaj=1;
-    query('#btmodif').onClick.listen(update);
-    //var listCount= listContacts.length;
-    //query("#num").text = listCount+1;
-  }
   
 //Fonction Mise a jour d'un contact
   
-  update(cle){
+  update(MouseEvent event){
     
     AddMaj=1;
-    var cleContact=cle;
-    LabelElement message = query("#message");
-    message.text = '';
-    listContacts.find(cle);
+       
+    var id=(event.target as ImageElement).title;
     
-    query("#num").text=listContacts.NoCont;
-    query("#prenom").text=listContacts.prenom;
-    query("#nom").text=listContacts.nom;
-    query("#email").text=listContacts.email;
-    query("#tel").text=listContacts.tel;
-    query("#adresse").text=listContacts.adresse;
-    
-    //display();  
-    //message.text = 'Suppression effectuée; ${message.text}';
+    var cont = listContacts.find(id.toString());
+   
+    //window.alert(cont.NoCont + " - " + cont.prenom + " - " + cont.nom + " - " + cont.email + " - " + cont.tel + " - " + cont.adresse);
+
+    query("#num").value=cont.NoCont;
+    query("#prenom").value=cont.prenom;
+    query("#nom").value=cont.nom;
+    query("#email").value=cont.email;
+    query("#tel").value=cont.tel;
+    query("#adresse").value=cont.adresse;
       
   }
-
-evenBtSupp(){
-          
-      query('#btsup').onClick.listen(remove);
-  }
-  
 
 //Fonction Suppression d'un contact
   
-  remove(cle) {
+remove(MouseEvent event) {
       
-      /*if(testsup==0){
+      var id=(event.target as ImageElement).title;
+       
+      if(window.confirm("Voulez vous supprimer ce contact?!!")){
         
-      }else{*/
-        window.alert("Suppression ${cle}");
-      //}
-               
-      LabelElement message = query("#message");
-      message.text = '';
-      listContacts.find(cle);
-      listContacts.remove(cle);
-      display();  
-      message.text = 'Suppression effectuée; ${message.text}';
+        LabelElement message = query("#message");
+        message.text = '';
+        var cont = listContacts.find(id.toString());
+        listContacts.remove(cont);
+        display();  
+        message.text = 'Suppression effectuée; ${message.text}';
+        
+      }      
       
   }
     

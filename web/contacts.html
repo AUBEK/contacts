@@ -8,52 +8,50 @@
     <!--<link rel="import" href="gestcon.html">-->
   </head>
   <body>
-    <div id="cnt_body" align="center">
-    <div id="main_bdy">
-      
-      <header>
-        <h1>LogoContact</h1>
-        <h2>Gestion des contacts personnel</h2>
+    
+    <div align="center">
+      <header id="header">
+        <!--Ma banniere-->
       </header>
-    
-      <fieldset style="text-align:left;"><legend><b>Liste des contacts</b></legend>
-        <section id="affcontacts">Contacts are coming...</section>
-      </fieldset>  
-      </br>
-      <fieldset style="text-align:left;"><legend><b>Formulaire contact</b></legend>
-        <section id="formcontact">
+      <div id="cnt_body"> 
+        <fieldset style="text-align:left;"><legend><b>Liste des contacts</b></legend>
+          <section id="affcontacts">Contacts are coming...</section>
+        </fieldset>  
+        </br>
+        <fieldset style="text-align:left;"><legend><b>Formulaire contact</b></legend>
+          <section id="formcontact">        
+            
+           <table border="0">
+             <form name="Fcontact" method="post">
+                <tr><td align="right"><label for="numero">Numéro</label></td><td><input id="num" type="text" name="num" size=10 maxlength=80 value="" required="true"></td></tr>
+                <tr><td align="right"><label for="prenom">Prénom</label></td><td><input id="prenom" name="prenom" size=40 maxlength=80 value="" required/></td></tr>
+                <tr><td align="right"><label for="nom">Nom</label></td><td><input id="nom" name="nom" size=40 maxlength=80 value="" required/></td></tr>
+                <tr><td align="right"><label for="email">Email</label></td><td><input id="email" type="email" name="email" size=40 maxlength=80 value="" required/></td></tr>
+                <tr><td align="right"><label for="tel">Téléphone</label></td><td><input id="tel" type="tel" name="tel" pattern="\d\d\d-\d\d\d-\d\d\d\d" size=40 maxlength=80 value="" required/></td></tr>
+                <tr><td align="right" valign="top"><label for="adresse">Adresse</label></td><td><textarea id="adresse" name="adresse" cols=60 rows=5 required></textarea></td></tr>              
+                <tr><td align="right" colspan="2"><button id="ajouter" type="button">Ajouter</button> <button type="reset">Annuler</button></td></tr>
+             </form>
+           </table> 
+          </section>
+        </fieldset>
         
-          
-         <table border="0">
-           <form name="Fcontact" method="post">
-              <tr><td align="right"><label for="numero">Numéro</label></td><td><input id="num" name="num" size=10 maxlength=80 value=""></td></tr>
-              <tr><td align="right"><label for="prenom">Prénom</label></td><td><input id="prenom" name="prenom" size=40 maxlength=80 value=""></td></tr>
-              <tr><td align="right"><label for="nom">Nom</label></td><td><input id="nom" name="nom" size=40 maxlength=80 value=""></td></tr>
-              <tr><td align="right"><label for="email">Email</label></td><td><input id="email" name="email" size=40 maxlength=80 value=""></td></tr>
-              <tr><td align="right"><label for="tel">Téléphone</label></td><td><input id="tel" name="tel" size=40 maxlength=80 value=""></td></tr>
-              <tr><td align="right" valign="top"><label for="adresse">Adresse</label></td><td><textarea id="adresse" name="adresse" cols=60 rows=5></textarea></td></tr>              
-              <tr><td align="right" colspan="2"><button id="ajouter" type="button">Ajouter</button> <button type="reset">Annuler</button></td></tr>
-           </form>
-         </table> 
-        </section>
-      </fieldset>
-      
-      </br>
-      <label id="message"></label>
-      
-      <!--<div id="sample_container_id">
-        <p id="sample_text_id"></p>
-      </div>-->
-      
-      <script type="application/dart" src="contacts.dart"></script>
-      <script src="packages/browser/dart.js"></script>
-    
-    <footer>
-      <p>Copyright Aurelien &copy; - Tous droits réservés<br />
+        </br>
+        <label id="message"></label>
+        
+        <!--<div id="sample_container_id">
+          <p id="sample_text_id"></p>
+        </div>-->
+        
+        <script type="application/dart" src="contacts.dart"></script>
+        <script src="packages/browser/dart.js"></script>
+
+      </div>  
+    <footer id="footer">
+      </br><p>Copyright Aurelien &copy; - Tous droits réservés<br />
       <a href="#"> Me contacter</a></p>
     </footer>
-    
-    </div>
-    </div>    
+
+ 
+    </div> 
   </body>
 </html>
